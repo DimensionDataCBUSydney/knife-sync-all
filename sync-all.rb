@@ -81,6 +81,7 @@ module KnifePlugin
       dirs = Dir.glob(dirname).select { |d| File.directory?(d) }
       dirs.each do |directory|
         dir = Pathname.new(directory).basename
+        result = `knife #{type} create #{dir}`
         upload_to_server("#{directory}/*", dir, type)
       end 
     end
